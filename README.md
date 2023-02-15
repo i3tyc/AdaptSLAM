@@ -1,12 +1,15 @@
 This repository contains the code for the **IEEE INFOCOM 2023** paper: *"AdaptSLAM: Edge-Assisted Adaptive SLAM with Resource Constraints via Uncertainty Minimization"* by [Ying Chen](https://sites.duke.edu/marialabyingchen/), [Hazer Inaltekin](https://scholar.google.com.tr/citations?user=yBRPzisAAAAJ&hl=en), and [Maria Gorlatova](https://maria.gorlatova.com/). 
 
 The AdaptSLAM implementation is based on [ORB-SLAM3](https://github.com/UZ-SLAMLab/ORB_SLAM3) and [Edge-SLAM](https://github.com/droneslab/edgeslam).
+This repository contains the code for the **IEEE INFOCOM 2023** paper: *"AdaptSLAM: Edge-Assisted Adaptive SLAM with Resource Constraints via Uncertainty Minimization"* by [Ying Chen](https://sites.duke.edu/marialabyingchen/), [Hazer Inaltekin](https://scholar.google.com.tr/citations?user=yBRPzisAAAAJ&hl=en), and [Maria Gorlatova](https://maria.gorlatova.com/). 
+
+The AdaptSLAM implementation is based on [ORB-SLAM3](https://github.com/UZ-SLAMLab/ORB_SLAM3) and [Edge-SLAM](https://github.com/droneslab/edgeslam).
 
 ## Outline
 * [I. Prerequisites](#1)
 * [II. Our Testing Setup](#2)
-* [III. Building AdaptSLAM](#3)
-* [IV. Running Examples](#4)
+* [III. Running AdaptSLAM in Simulated Settings](#3)
+* [IV. Running AdaptSLAM on Client and Server Devices](#4)
 
 
 #### <span id="1">I. Prerequisites
@@ -19,18 +22,15 @@ GTX 1660 Ti GPU) using a virtual machine with 4-core CPUs and 8GB of RAM.
   * OpenCV 3.4.2.
   * Eigen3 3.2.10.
  
-#### <span id="3">III. Building AdaptSLAM
-a. Clone the repository.
-  ```
-  git clone https://github.com/AdaptSLAM/AdaptSLAM.git
-  ```
-b. Build the Thirdparty libraries and AdaptSLAM.
+#### <span id="3">III. Running AdaptSLAM in Simulated Settings
+##### 1. Building AdaptSLAM in Simulated Settings
+After cloning the repository, build the Thirdparty libraries and AdaptSLAM.
  ```
- cd AdaptSLAM
+ cd AdaptSLAM/Sim AdaptSLAM
  chmod +x build.sh
  ./build.sh
  ```
-#### <span id="4">IV. Running Examples
+##### 2. Running Examples
 
 a. Download the [EuRoC V102 sequence](http://robotics.ethz.ch/~asl-datasets/ijrr_euroc_mav_dataset/vicon_room2/V2_02_medium/V2_02_medium.zip).
 
@@ -40,6 +40,25 @@ b. Execute the following script:
 ```
 Change ```V102FileDirectory``` to the directory where the dataset has been uncompressed. 
 
+#### <span id="4">IV. Running AdaptSLAM on Client and Server Devices
+##### 1. Building AdaptSLAM on Client and Server Devices
+a. In  ```src/LocalMapping.cc```, modify ```#Input your IP address#```  to your IP address. You can also modify ```#Input your port number#```  to the port number you selected. However, the default port numbers should also work.
+
+b. On both client and server devices, build the Thirdparty libraries and AdaptSLAM.
+ ```
+ cd AdaptSLAM/Edge-assisted AdaptSLAM
+ chmod +x build.sh
+ ./build.sh
+ ```
+ ##### 2. Running Examples
+
+For example, for EuRoC V102 sequence, please execute the following script on both server and client devices
+```
+./Examples/Monocular/mono_euroc ./Vocabulary/ORBvoc.txt ./Examples/Monocular/EuRoC.yaml V102FileDirectory ./Examples/Monocular/EuRoC_TimeStamps/V102.txt dataset-V102_mono
+```
+Then on the client device, please enter ```client``` when the message in the terminal window ask to ```Enter the run type (client or server)```. On the server device, please enter ```server```.
+
+After this, two TCP connections between the client and server devices will be established.
  # Citation
 
 Please cite the following paper in your publications if the dataset or code helps your research. 
