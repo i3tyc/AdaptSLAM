@@ -50,16 +50,20 @@ LocalMapping::LocalMapping(System* pSys, Atlas *pAtlas, KeyFrameDatabase* pKFDB,
         string client_port, server_port;
         cout << "Enter the client IP address: ";
         //getline(cin, client_ip);
+        //#Input your IP address#
         client_ip="192.168.255.169";
         cout << "Enter the server IP address: ";
         //getline(cin, server_ip);
+         //#Input your IP address#
         server_ip="192.168.255.169";
         
         cout << "Enter the client port number used for uplink transmission: ";
         //getline(cin, client_port);
+         //#Input your port number#
         client_port="10000";
         cout << "Enter the server port number used for uplink transmission: ";
         //getline(cin, server_port);
+         //#Input your port number#
         server_port="10001";
         uplink_socket = new TcpSocket(client_ip, std::stoi(client_port), server_ip, std::stoi(server_port));
     
@@ -68,9 +72,11 @@ LocalMapping::LocalMapping(System* pSys, Atlas *pAtlas, KeyFrameDatabase* pKFDB,
         uplink_thread = new thread(&ORB_SLAM3::LocalMapping::tcp_send, &client_uplink_queue, uplink_socket, "uplink");
 
         cout << "Enter the client port number used for downlink transmission: ";
+        //#Input your port number#
         client_port="10002";
         //getline(cin, client_port);
         cout << "Enter the server port number used for downlink transmission: ";
+        //#Input your port number#
         server_port="10003";
         //getline(cin, server_port);
     
@@ -84,10 +90,12 @@ LocalMapping::LocalMapping(System* pSys, Atlas *pAtlas, KeyFrameDatabase* pKFDB,
         string server_port;
         cout << "Enter the server IP address: ";
         //getline(cin, server_ip);
+        //#Input your IP address#
         server_ip="192.168.255.169";
         // Keyframe connection
         cout << "Enter the server port number used for uplink transmission: ";
         //getline(cin, server_port);
+        //#Input your port number#
         server_port="10001";
         uplink_socket = new TcpSocket(server_ip, std::stoi(server_port));
         uplink_socket->waitForConnection();
@@ -95,6 +103,7 @@ LocalMapping::LocalMapping(System* pSys, Atlas *pAtlas, KeyFrameDatabase* pKFDB,
 
         cout << "Enter the server port number used for downlink transmission: ";
         //getline(cin, server_port);
+        //#Input your port number#
         server_port="10003";
         downlink_socket = new TcpSocket(server_ip, std::stoi(server_port));
         downlink_socket->waitForConnection();
