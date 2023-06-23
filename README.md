@@ -1,4 +1,4 @@
-This repository contains the code for the **IEEE INFOCOM 2023** paper: *"AdaptSLAM: Edge-Assisted Adaptive SLAM with Resource Constraints via Uncertainty Minimization"* by [Ying Chen](https://sites.duke.edu/marialabyingchen/), [Hazer Inaltekin](https://scholar.google.com.tr/citations?user=yBRPzisAAAAJ&hl=en), and [Maria Gorlatova](https://maria.gorlatova.com/). The contributors of the code are [Ying Chen](https://sites.duke.edu/marialabyingchen/) and [Maria Gorlatova](https://maria.gorlatova.com/). For questions on this repository or the related paper, please contact Ying Chen at yc383 [AT] duke [DOT] edu
+This repository contains the code for the **IEEE INFOCOM 2023** paper: *"[AdaptSLAM: Edge-Assisted Adaptive SLAM with Resource Constraints via Uncertainty Minimization](https://arxiv.org/abs/2301.04620)"* by [Ying Chen](https://sites.duke.edu/marialabyingchen/), [Hazer Inaltekin](https://scholar.google.com.tr/citations?user=yBRPzisAAAAJ&hl=en), and [Maria Gorlatova](https://maria.gorlatova.com/). 
 
 The AdaptSLAM implementation is based on [ORB-SLAM3](https://github.com/UZ-SLAMLab/ORB_SLAM3) and [Edge-SLAM](https://github.com/droneslab/edgeslam).
 
@@ -68,5 +68,6 @@ Please cite the following paper in your publications if the dataset or code help
     }
     
 # Acknowledgments
+The contributors of the code are [Ying Chen](https://sites.duke.edu/marialabyingchen/) and [Maria Gorlatova](https://maria.gorlatova.com/). For questions on this repository or the related paper, please contact Ying Chen at yc383 [AT] duke [DOT] edu.
 
 This work was supported in part by NSF grants CSR1903136, CNS-1908051, and CNS-2112562, NSF CAREER Award IIS-2046072, by an IBM Faculty Award, and by the Australian Research Council under Grant DP200101627.
