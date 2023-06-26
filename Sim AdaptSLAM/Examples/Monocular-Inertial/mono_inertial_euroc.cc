@@ -247,7 +247,7 @@ int main(int argc, char *argv[])
     {
         SLAM.SaveTrajectoryEuRoC("CameraTrajectory.txt");
         SLAM.SaveKeyFrameTrajectoryEuRoC("KeyFrameTrajectory.txt");
-        //////////////////////////CommSLAM//////////////////////////////////
+        //////////////////////////CommSLAM/////////////////////////rror/////////
         SLAM.SaveUncertainty("Uncertainty.txt");
     }
 
