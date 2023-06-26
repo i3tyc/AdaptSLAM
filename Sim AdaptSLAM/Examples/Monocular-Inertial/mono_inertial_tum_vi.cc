@@ -114,18 +114,9 @@ int main(int argc, char **argv)
     /*cout << "Start processing sequence ..." << endl;
     cout << "Images in the sequence: " << nImages << endl;
     cout << "IMU data in the sequence: " << nImu << endl << endl;*/
-    
-    /////////////////////////CommSLAM//////////////////////////////////
-    cout<<"Enter the run type (client or server)"<<endl;
-    string RunType;
-    getline(cin, RunType);
-    
-    
+
     // Create SLAM system. It initializes all system threads and gets ready to process frames.
     ORB_SLAM3::System SLAM(argv[1],argv[2],ORB_SLAM3::System::IMU_MONOCULAR, true, 0, file_name);
-    
-    if (RunType=="client")
-    {
     float imageScale = SLAM.GetImageScale();
 
     double t_resize = 0.f;
@@ -212,8 +203,7 @@ int main(int argc, char **argv)
 
             // Pass the image to the SLAM system
             // cout << "tframe = " << tframe << endl;
-                ////////////////////////CommSLAM/////////////////////////
-            SLAM.TrackMonocular(im,tframe,-1, vImuMeas); // TODO change to monocular_inertial
+            SLAM.TrackMonocular(im,tframe,vImuMeas); // TODO change to monocular_inertial
 
     #ifdef COMPILEDWITHC11
             std::chrono::steady_clock::time_point t2 = std::chrono::steady_clock::now();
@@ -251,13 +241,7 @@ int main(int argc, char **argv)
         }
 
     }
-    /////////////////////////////CommSLAM//////////////////////////////
-    SLAM.Exit();
-    }
-    else
-    {   
-        SLAM.ReceiveUplink();
-    }
+
     // cout << "ttrack_tot = " << ttrack_tot << std::endl;
     // Stop all threads
     SLAM.Shutdown();
@@ -266,13 +250,17 @@ int main(int argc, char **argv)
     // Tracking time statistics
 
     // Save camera trajectory
-    if (RunType=="server")
-    {
+
     if (bFileName)
     {
-        const string kf_file =  "kf_" + string(argv[argc-1]) + "_server.txt";
-        const string f_file =  "f_" + string(argv[argc-1]) + ".txt";
-        //SLAM.SaveTrajectoryEuRoC(f_file);
+        ////////////////CommSLAM/////////////////////////
+
+        const string kf_file =  string(argv[argc-1]) +"_kf" + ".txt";
+        const string f_file =   string(argv[argc-1]) + "_f" +".txt";
+
+        //const string kf_file =  "kf_" + string(argv[argc-1]) + ".txt";
+        //const string f_file =  "f_" + string(argv[argc-1]) + ".txt";
+        SLAM.SaveTrajectoryEuRoC(f_file);
         SLAM.SaveKeyFrameTrajectoryEuRoC(kf_file);
     }
     else
@@ -280,31 +268,16 @@ int main(int argc, char **argv)
         SLAM.SaveTrajectoryEuRoC("CameraTrajectory.txt");
         SLAM.SaveKeyFrameTrajectoryEuRoC("KeyFrameTrajectory.txt");
     }
-    }
-    else
-    {
-        const string f_file =  "f_" + string(argv[argc-1]) + ".txt";
-        const string kf_file =  "kf_" + string(argv[argc-1]) + "_client.txt";
-        SLAM.SaveKeyFrameTrajectoryEuRoC(kf_file);
-        SLAM.SaveTrajectoryEuRoC(f_file);
-        //CommSLAM//////////
-        while (1)
-        {
-            SLAM.Exit();
-            usleep(10000000);
-        }
-    }
-    
-    
+
     sort(vTimesTrack.begin(),vTimesTrack.end());
     float totaltime = 0;
     for(int ni=0; ni<nImages[0]; ni++)
     {
         totaltime+=vTimesTrack[ni];
     }
-    //cout << "-------" << endl << endl;
-    //cout << "median tracking time: " << vTimesTrack[nImages[0]/2] << endl;
-    //cout << "mean tracking time: " << totaltime/proccIm << endl;
+    cout << "-------" << endl << endl;
+    cout << "median tracking time: " << vTimesTrack[nImages[0]/2] << endl;
+    cout << "mean tracking time: " << totaltime/proccIm << endl;
 
     /*const string kf_file =  "kf_" + ss.str() + ".txt";
     const string f_file =  "f_" + ss.str() + ".txt";
