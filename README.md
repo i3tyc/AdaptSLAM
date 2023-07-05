@@ -58,7 +58,7 @@ Then on the client device, please enter ```client``` when the message in the ter
 After this, two TCP connections between the client and server devices will be established.
  # Citation
 
-Please cite the following paper in your publications if the dataset or code helps your research. 
+Please cite the following paper in your publications if this code helps your research. 
 
      @inproceedings{Chen23AdaptSLAM,
       title={{AdaptSLAM}: Edge-Assisted Adaptive SLAM with Resource Constraints via Uncertainty Minimization},
