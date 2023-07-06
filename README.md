@@ -56,7 +56,11 @@ For example, for EuRoC V102 sequence, please execute the following script on bot
 Then on the client device, please enter ```client``` when the message in the terminal window ask to ```Enter the run type (client or server)```. On the server device, please enter ```server```.
 
 After this, two TCP connections between the client and server devices will be established.
- # Citation
+
+# Associated Demo
+The associated [demo](https://www.researchgate.net/profile/Maria-Gorlatova-2/publication/368923722_Demo_Abstract_Demonstrating_Resource-Efficient_SLAM_in_Virtual_Spacecraft_Environments/links/6400c1b20d98a97717d0a834/Demo-Abstract-Demonstrating-Resource-Efficient-SLAM-in-Virtual-Spacecraft-Environments.pdf) builds a game engine-based emulator, which lets participants navigate virtual spacecraft environments while create their own moving trajectories for evaluating AdaptSLAM and the baseline. The demo is presented at IEEE INFOCOM in Hoboken, NJ.
+
+# Citation
 
 Please cite the following paper in your publications if this code helps your research. 
 
